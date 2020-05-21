@@ -111,5 +111,6 @@ ln -sf /usr/local/php/bin/pecl /usr/bin/pecl
 pecl channel-update pecl.php.net
 pecl install igbinary amqp apcu protobuf redis uuid inotify event swoole memcached
 cp php.ini /usr/local/php/etc -f
+cp php-fpm.conf /usr/local/php/etc -f
 php -v && php -m
 ./init.d/php-fpm restart
