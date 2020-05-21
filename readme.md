@@ -11,6 +11,21 @@ git安装[apt-get]
 
 [本地nginx+php]  
 deppin_ngx_php.sh
+```markdown
+location / {
+            #本地开发时，使用主机名称访问的 80的nginx转发到docker的10080nginx 
+            proxy_set_header Host               $host;
+            proxy_set_header X-Real-IP          $remote_addr;
+            proxy_set_header X-Forwarded-For    $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto  $scheme;
+            proxy_set_header X-Forwarded-Host   $host;
+            proxy_set_header X-Forwarded-Port   $server_port;
+            if ( $http_host ~ .*\.(test|demo|rpc|api|swoole)$ ) {
+                proxy_pass                      http://127.0.0.1:10080;
+            }
+        }
+```
+
 
 2、CentOS 8安装手记
 =====
